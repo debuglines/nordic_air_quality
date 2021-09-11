@@ -1,0 +1,14 @@
+[build.env]
+passthrough = [
+    "RUST_BACKTRACE",
+    "RUST_LOG",
+]
+
+#[build]
+#xargo = true
+
+# Raspberry Pi 2, 3
+# cross build --release --target arm-unknown-linux-gnueabihf
+
+# Raspberry Pi Zero, 1
+# cross build --release --target arm-unknown-linux-musleabi

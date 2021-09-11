@@ -1,0 +1,13 @@
+[package]
+name = "naq_cli"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+structopt = "0.3.23"
+macaddr = "1.0.1"
+tokio = { version = "1.11.0", features = ["full"] }
+
+naq_device_connector = {path = "../naq_device_connector"}
