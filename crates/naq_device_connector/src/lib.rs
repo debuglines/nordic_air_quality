@@ -1,7 +1,7 @@
 use btleplug::api::{BDAddr, Central, Characteristic, Manager as _, Peripheral as _};
 use btleplug::platform::{Adapter, Manager, Peripheral};
 use lazy_static::lazy_static;
-use naq_domain::SensorData;
+use naq_domain::{SensorData, SensorMetadata};
 use std::time::Duration;
 use std::{error::Error, fmt};
 use tokio::time;
@@ -37,7 +37,7 @@ impl fmt::Display for ConnectorError {
 pub async fn check_sensor_data_by_mac_address(
     mac_address: &macaddr::MacAddr6,
     scan_duration: Duration,
-) -> Result<SensorData, Box<dyn Error>> {
+) -> Result<SensorMetadata, Box<dyn Error>> {
     let manager = Manager::new().await?;
     let central = get_central_adapter(&manager).await?;
 
@@ -52,8 +52,13 @@ pub async fn check_sensor_data_by_mac_address(
     let chars = sensor.discover_characteristics().await?;
 
     let sensor_data = read_sensor_data(&sensor, &chars).await?;
+    let sensor_metadata = SensorMetadata {
+        mac_address: mac_address.clone(),
+        serial_number: None,
+        measurements: sensor_data,
+    };
 
-    Ok(sensor_data)
+    Ok(sensor_metadata)
 }
 
 #[derive(Debug, serde::Deserialize)]
@@ -73,8 +78,7 @@ struct SensorDataRaw {
 impl From<SensorDataRaw> for SensorData {
     fn from(raw: SensorDataRaw) -> Self {
         Self {
-            version: raw.version as u32,
-            humidity_percent: raw.humidity as f32 / 2.0,
+            relative_humidity_percent: raw.humidity as f32 / 2.0,
             radon_short_term: parse_raw_radon(raw.radon_short_term),
             radon_long_term: parse_raw_radon(raw.radon_long_term),
             temperature_celsius: raw.temperature as f32 / 100.0,

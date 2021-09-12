@@ -9,5 +9,7 @@ edition = "2018"
 structopt = "0.3.23"
 macaddr = "1.0.1"
 tokio = { version = "1.11.0", features = ["full"] }
+chrono = "0.4.19"
 
 naq_device_connector = {path = "../naq_device_connector"}
+naq_domain = { path = "../naq_domain"}
