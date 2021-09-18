@@ -1,4 +1,6 @@
-# Nordic air quality (naq) CLI
+# Nordic air quality CLI
+
+Project name: `naq_cli`.
 
 CLI to check sensor data for air quality devices. 
 It currently supports Airthings Wave plus.
@@ -9,7 +11,7 @@ It currently supports Airthings Wave plus.
 $ naq_cli mac <mac_address>
 ```
 Result
-```
+```text
 > Checking for sensor data. Please wait a few seconds ...
 > Found sensor data
 

@@ -8,17 +8,8 @@ Supported devices:
 
 ## Projects
 
-The workspace contains several projects, including a device connector lib, domain lib, and command line interfaces. 
+The workspace contains several projects, including: 
 
-### Device connector
-
-<dl>
-    <dt>Project name</dt>
-    <dd>naq_device_connector</dd>
-    <dt>Type</dt>
-    <dd>Library</dd>
-</dl>
-
-[Project README.md](./crates/naq_device_connector/README.md).
-This library uses bluetooth to read sensor data. 
-It can connect to the sensor devices with either the serial number or the mac address.  
+- Device connector library: [naq_device_connector](./crates/naq_device_connector)
+- Domain library: [naq_domain](./crates/naq_domain)
+- Command line interface (binary): [naq_cli](./crates/naq_cli)

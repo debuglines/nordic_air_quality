@@ -1,4 +1,4 @@
-#![cfg_attr(not(doctest), doc = include_str!("../README.md"))]
+#![doc = include_str!("../README.md")]
 
 use macaddr::MacAddr6;
 use naq_device_connector::check_sensor_data_by_mac_address;

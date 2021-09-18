@@ -1,3 +1,5 @@
+#![doc = include_str!("../README.md")]
+
 use btleplug::api::{BDAddr, Central, Characteristic, Manager as _, Peripheral as _};
 use btleplug::platform::{Adapter, Manager, Peripheral};
 use lazy_static::lazy_static;
